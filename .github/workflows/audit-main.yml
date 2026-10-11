@@ -1,0 +1,22 @@
+name: Canonical history audit
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  audit-main:
+    name: audit-main
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out the accepted canonical commit
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Independently audit accepted transition
+        run: python3 scripts/audit_main.py

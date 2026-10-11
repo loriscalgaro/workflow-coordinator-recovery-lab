@@ -1,0 +1,9 @@
+{
+  "schema": "github-canonical-poc-v1",
+  "workflow_id": "demo",
+  "revision": 0,
+  "previous_commit": null,
+  "last_operation": null,
+  "applied_operations": [],
+  "note": "Synthetic recovery-lab genesis; not a production checkpoint"
+}
