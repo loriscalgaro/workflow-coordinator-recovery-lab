@@ -1,9 +1,12 @@
 {
+  "applied_operations": [
+    "op-lab-spoof-001",
+    "op-lab-spoof-002"
+  ],
+  "last_operation": "op-lab-spoof-002",
+  "note": "Intentionally invalid synthetic increment; reject and never merge.",
+  "previous_commit": "4358cb3f7b7a4e0d8f86ea219b63b70d67d67461",
+  "revision": 2,
   "schema": "github-canonical-poc-v1",
-  "workflow_id": "demo",
-  "revision": 0,
-  "previous_commit": null,
-  "last_operation": null,
-  "applied_operations": [],
-  "note": "Synthetic recovery-lab genesis; not a production checkpoint"
+  "workflow_id": "demo"
 }
