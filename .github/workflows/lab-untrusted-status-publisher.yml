@@ -1,0 +1,22 @@
+name: Lab UNTRUSTED status publisher probe - NEVER MERGE
+on:
+  pull_request:
+    types: [opened]
+permissions: {}
+jobs:
+  attempt-status-impersonation:
+    if: ${{ github.event.pull_request.head.repo.full_name == github.repository && startsWith(github.head_ref, 'probe/untrusted-status-publisher-') }}
+    runs-on: ubuntu-latest
+    permissions:
+      statuses: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      TARGET_SHA: 6f07731dd641040829dd65bffd9f503733bb6b57
+      EXPECTED_REPO: loriscalgaro/workflow-coordinator-recovery-lab
+    steps:
+      - name: Publish synthetic status on another open test PR
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = "$EXPECTED_REPO"
+          gh api "repos/${EXPECTED_REPO}/statuses/${TARGET_SHA}" --method POST -f state=success -f context=canonical-gate/verified -f description='LAB_UNTRUSTED_STATUS_PROBE__DO_NOT_MERGE' --jq '{id, state, context, description, creator: .creator.login}'
